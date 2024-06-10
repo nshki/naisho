@@ -40,11 +40,11 @@ class BulkDeletionRequest
 
   private
 
-  # Generate a deletion request email for each California data brokers.
+  # Generate a deletion request email for each company.
   #
   # @return [void]
   def generate_emails
-    Company.california_data_brokers.find_each.with_index do |company, index|
+    Company.all.find_each.with_index do |company, index|
       deletion_request = DeletionRequest.new \
         company: company,
         smtp_config: smtp_config,
