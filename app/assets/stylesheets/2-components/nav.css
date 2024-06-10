@@ -3,6 +3,11 @@
   gap: var(--spacing-md);
   padding: 0;
   list-style: none;
+  font-size: 0.875rem;
+
+  @media (min-width: 500px) {
+    font-size: 1rem;
+  }
 }
 
 .nav__link {
