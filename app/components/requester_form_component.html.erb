@@ -1,4 +1,6 @@
 <%= form_with(url: @url, class: "requester-form") do |form| %>
+  <%= form.hidden_field :regulation, value: params[:regulation] %>
+
   <div class="requester-form__primary">
     <div class="requester-form__field">
       <%=
