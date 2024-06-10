@@ -11,8 +11,8 @@ WORKDIR /rails
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
-
+    BUNDLE_WITHOUT="development" \
+    LITESTACK_DATA_PATH="/data"
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
@@ -54,9 +54,13 @@ RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER rails:rails
 
+# Deployment options
+ENV DATABASE_URL="sqlite3:///data/production.sqlite3"
+
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
+VOLUME /data
 CMD ["./bin/rails", "server"]
