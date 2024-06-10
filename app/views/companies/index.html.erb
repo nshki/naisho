@@ -1,0 +1,12 @@
+<% content_for(:title, t(".title")) %>
+
+<%=
+  render(
+    HeroComponent.new(
+      heading: t(".hero.heading"),
+      description: t(".hero.description", last_updated_at: @last_updated_at)
+    )
+  )
+%>
+
+<%= render CompanyGridComponent.new(companies: @companies) %>
