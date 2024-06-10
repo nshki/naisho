@@ -1,4 +1,5 @@
 module Company::CaliforniaDataBrokersRequestable
+  require "net/http"
   require "csv"
 
   extend ActiveSupport::Concern

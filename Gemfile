@@ -34,3 +34,5 @@ group :test do
   gem "selenium-webdriver"
   gem "simplecov", require: false
 end
+
+gem "dockerfile-rails", ">= 1.6", :group => :development

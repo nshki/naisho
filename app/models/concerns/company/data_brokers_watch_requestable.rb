@@ -1,4 +1,6 @@
 module Company::DataBrokersWatchRequestable
+  require "net/http"
+
   extend ActiveSupport::Concern
 
   API_URI = URI("https://databrokerswatch.org/api/databrokers").freeze
