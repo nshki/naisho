@@ -1,0 +1,46 @@
+.button {
+  --background:
+    linear-gradient(
+      to bottom,
+      var(--background-from),
+      var(--background-to)
+    );
+  --background-from: var(--color-water);
+  --background-to: var(--color-ocean);
+  --color-outline: var(--color-water);
+  --color-text: var(--color-cream);
+
+  background: var(--background);
+  padding: var(--spacing-md);
+  border: none;
+  border-radius: var(--radius);
+  outline: none;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-text);
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid var(--color-outline);
+  }
+
+  &:active {
+    --background: var(--color-ocean);
+  }
+}
+
+.button--secondary {
+  --background: transparent;
+  --color-text: var(--color-water);
+
+  outline: 2px dotted var(--color-outline);
+
+  &:active {
+    --background: transparent;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --color-text: var(--color-cream);
+  }
+}

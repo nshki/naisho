@@ -1,0 +1,49 @@
+.nav {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: 0;
+  list-style: none;
+}
+
+.nav__link {
+  --color-text: var(--color-black);
+
+  position: relative;
+  text-decoration: none;
+  color: var(--color-text);
+
+  &::after {
+    --color-border: transparent;
+
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid var(--color-border);
+    transform: scale3d(0, 1, 1);
+    transform-origin: left;
+    pointer-events: none;
+  }
+
+  &:is(:hover, :focus)::after {
+    --color-border: var(--color-water);
+
+    transform: scale3d(1, 1, 1);
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    --color-text: var(--color-cream);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::after {
+      transition: var(--transition);
+    }
+  }
+}

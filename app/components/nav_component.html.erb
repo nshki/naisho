@@ -1,0 +1,14 @@
+<ul class="nav">
+  <% @items.each do |item| %>
+    <li class="nav__item">
+      <%=
+        link_to(
+          item[:text],
+          item[:url],
+          class: "nav__link",
+          target: item[:external] ? "_blank" : nil
+        )
+      %>
+    </li>
+  <% end %>
+</ul>

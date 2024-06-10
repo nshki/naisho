@@ -1,0 +1,9 @@
+<ul class="company-grid">
+  <% @companies.each do |company| %>
+    <li class="company-grid__item">
+      <h3 class="company-grid__heading"><%= company.name %></h3>
+      <p class="company-grid__text"><%= company.website %></p>
+      <p class="company-grid__text company-grid__text--alt"><%= company.source %></p>
+    </li>
+  <% end %>
+</ul>

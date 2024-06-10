@@ -1,0 +1,12 @@
+<div class="steps-content">
+  <h2 class="steps-content__heading"><%= @heading %></h2>
+
+  <ol class="steps-content__steps">
+    <% @steps.each.with_index do |step, index| %>
+      <li class="steps-content__step" data-step="<%= index + 1 %>">
+        <h3 class="steps-content__title"><%= step[:title] %></h3>
+        <p class="steps-content__description"><%= step[:description] %></p>
+      </li>
+    <% end %>
+  </ol>
+</div>
