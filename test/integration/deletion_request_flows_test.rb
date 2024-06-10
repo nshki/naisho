@@ -21,7 +21,7 @@ class DeletionRequestFlowsTest < ActionDispatch::IntegrationTest
     # is correct.
     assert_emails 1
     assert_enqueued_emails 1
-    assert_redirected_to root_path
+    assert_redirected_to new_bulk_deletion_request_path
     assert_equal "Deletion requests being sent through your SMTP provider. Check your email outbox for confirmation.", flash[:notice]
 
     # The rest of the emails should be able to be delivered later.

@@ -20,6 +20,8 @@ class BulkDeletionRequestsController < ApplicationController
       render(:new, status: :unprocessable_entity) && return
     end
 
-    redirect_to root_path, notice: t(".notice")
+    redirect_to \
+      new_bulk_deletion_request_path(regulation: params[:regulation]),
+      notice: t(".notice")
   end
 end
