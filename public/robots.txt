@@ -1,1 +1,27 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+# Block OpenAI.
+User-agent: GPTBot
+Disallow: /
+
+# Block OpenAI.
+User-agent: ChatGPT-User
+Disallow: /
+
+# Block Google Bard/Gemini.
+User-agent: Google-Extended
+Disallow: /
+
+# Block Common Crawl.
+User-agent: CCBot
+Disallow: /
+
+# Block Anthropic.
+User-agent: anthropic-ai
+Disallow: /
+
+# Block Anthropic.
+User-agent: Claude-Web
+Disallow: /
+
+# Block Facebook.
+User-agent: FacebookBot
+Disallow: /
