@@ -6,6 +6,7 @@ ruby "3.3.2"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "csv"
+gem "dockerfile-rails", ">= 1.6", group: :development
 gem "importmap-rails"
 gem "jbuilder"
 gem "litestack", github: "oldmoe/litestack"
@@ -34,5 +35,3 @@ group :test do
   gem "selenium-webdriver"
   gem "simplecov", require: false
 end
-
-gem "dockerfile-rails", ">= 1.6", :group => :development
