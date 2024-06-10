@@ -1,0 +1,7 @@
+<% if @href.present? %>
+  <%= link_to @text, @href, class: "button #{modifier_class}", **@html %>
+<% else %>
+  <%= button_tag class: "button #{modifier_class}", **@html do %>
+    <%= @text %>
+  <% end %>
+<% end %>

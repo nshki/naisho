@@ -1,0 +1,181 @@
+<%= form_with(url: @url, class: "requester-form") do |form| %>
+  <div class="requester-form__primary">
+    <div class="requester-form__field">
+      <%=
+        form.label(
+          :email_subject,
+          t("components.requester_form.email_subject_label"),
+          class: "requester-form__label"
+        )
+      %>
+      <%=
+        form.text_field(
+          :email_subject,
+          required: true,
+          value: email_subject_value,
+          class: "requester-form__input"
+        )
+      %>
+    </div>
+
+    <div class="requester-form__field">
+      <%=
+        form.label(
+          :email_body,
+          t("components.requester_form.email_body_label"),
+          class: "requester-form__label"
+        )
+      %>
+      <%=
+        form.text_area(
+          :email_body,
+          required: true,
+          value: email_body_value,
+          class: "requester-form__textarea"
+        )
+      %>
+    </div>
+  </div>
+
+  <div class="requester-form__secondary">
+    <div class="requester-form__field">
+      <%=
+        form.label(
+          :smtp_provider,
+          t("components.requester_form.smtp_provider_label"),
+          class: "requester-form__label"
+        )
+      %>
+      <%=
+        form.select(
+          :smtp_provider,
+          smtp_provider_options,
+          selected: smtp_provider_selected,
+          class: "requester-form__input"
+        )
+      %>
+    </div>
+
+    <div class="requester-form__field">
+      <%=
+        form.label(
+          :smtp_username,
+          t("components.requester_form.smtp_username_label"),
+          class: "requester-form__label"
+        )
+      %>
+      <%=
+        form.text_field(
+          :smtp_username,
+          required: true,
+          value: smtp_username_value,
+          class: "requester-form__input"
+        )
+      %>
+    </div>
+
+    <div class="requester-form__field">
+      <%=
+        form.label(
+          :smtp_password,
+          t("components.requester_form.smtp_password_label"),
+          class: "requester-form__label"
+        )
+      %>
+      <%=
+        form.password_field(
+          :smtp_password,
+          required: true,
+          class: "requester-form__input"
+        )
+      %>
+    </div>
+
+    <% if show_flash? %>
+      <% if errors? %>
+        <ul class="requester-form__flash">
+          <% errors.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="requester-form__flash"><%= flash_message %></p>
+      <% end %>
+    <% end %>
+
+    <div class="requester-form__actions">
+      <%=
+        render(
+          ButtonComponent.new(
+            text: t("components.requester_form.submit"),
+            type: "submit",
+            name: nil
+          )
+        )
+      %>
+
+      <%=
+        render(
+          ButtonComponent.new(
+            text: t("components.requester_form.help"),
+            variant: :secondary,
+            type: "button",
+            popovertarget: "requester-form-popover"
+          )
+        )
+      %>
+    </div>
+  </div>
+<% end %>
+
+<div class="requester-form__popover" popover id="requester-form-popover">
+  <div class="requester-form__popover__inner">
+    <div class="requester-form__popover__section">
+      <h2 class="requester-form__popover__heading">
+        <%= t("components.requester_form.popover.smtp_heading") %>
+      </h2>
+
+      <p class="requester-form__popover__text">
+        <%= t("components.requester_form.popover.smtp_text") %>
+      </p>
+    </div>
+
+    <div class="requester-form__popover__section">
+      <h2 class="requester-form__popover__heading">
+        <%= t("components.requester_form.popover.creds_heading") %>
+      </h2>
+
+      <p class="requester-form__popover__text">
+        <%= t("components.requester_form.popover.creds_text") %>
+      </p>
+
+      <ul class="requester-form__popover__list">
+        <% providers.each do |provider| %>
+          <li class="requester-form__popover__list-item">
+            <%= link_to provider[:label], provider[:app_password_article_url] %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="requester-form__popover__section">
+      <h2 class="requester-form__popover__heading">
+        <%= t("components.requester_form.popover.tokens_heading") %>
+      </h2>
+
+      <p class="requester-form__popover__text">
+        <%= t("components.requester_form.popover.tokens_text") %>
+      </p>
+    </div>
+
+    <div class="requester-form__popover__section">
+      <h2 class="requester-form__popover__heading">
+        <%= t("components.requester_form.popover.after_heading") %>
+      </h2>
+
+      <p class="requester-form__popover__text">
+        <%= t("components.requester_form.popover.after_text") %>
+      </p>
+    </div>
+  </div>
+</div>

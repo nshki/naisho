@@ -1,0 +1,40 @@
+.faq {
+  max-width: 768px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-inline: auto;
+
+  * + & {
+    margin-top: var(--spacing-xl);
+  }
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
+}
+
+.faq__heading {
+  font-size: 2rem;
+}
+
+.faq__details {
+  width: 100%;
+}
+
+.faq__details__question {
+  --color-text: var(--color-night);
+
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+
+  @media (prefers-color-scheme: dark) {
+    --color-text: var(--color-cream);
+  }
+}
+
+.faq__details__answer {
+  margin-top: var(--spacing-sm);
+}

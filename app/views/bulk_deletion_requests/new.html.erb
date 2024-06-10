@@ -1,0 +1,23 @@
+<% content_for(:title, t(".title")) %>
+
+<%=
+  render(
+    HeroComponent.new(
+      heading: t(".hero.heading", company_count: Company.count),
+      description: t(".hero.description"),
+    )
+  )
+%>
+
+<%= turbo_frame_tag "requester_form" do %>
+  <%=
+    render(
+      RequesterFormComponent.new(
+        bulk_deletion_request: @bulk_deletion_request,
+        url: bulk_deletion_requests_path,
+        flash: flash,
+        regulation: @regulation
+      )
+    )
+  %>
+<% end %>

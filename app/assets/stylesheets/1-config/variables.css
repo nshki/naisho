@@ -1,0 +1,26 @@
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-cream: #fafafa;
+  --color-ash: #6b7079;
+  --color-dusk: #979fad;
+  --color-night: #282c34;
+  --color-water: #00b0ab;
+  --color-ocean: #007c72;
+
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  --font-mono: SFMono-Regular, "Consolas", "Liberation Mono", "Menlo", monospace;
+
+  --transition: all 0.2s ease-in-out;
+
+  --radius: 4px;
+  --radius-lg: 20px;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+}

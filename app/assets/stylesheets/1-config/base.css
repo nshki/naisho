@@ -1,0 +1,91 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+body {
+  --color-background: var(--color-cream);
+  --color-text: var(--color-ash);
+
+  background-color: var(--color-background);
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  color: var(--color-text);
+
+  @media (prefers-color-scheme: dark) {
+    --color-background: var(--color-night);
+    --color-text: var(--color-dusk);
+  }
+}
+
+p, h1, h2, h3, h4, h5, h6, ul, ol {
+  margin: 0;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  --color-text: var(--color-black);
+
+  color: var(--color-text);
+
+  @media (prefers-color-scheme: dark) {
+    --color-text: var(--color-cream);
+  }
+}
+
+input, textarea, select {
+  --background:
+    linear-gradient(
+      to bottom right,
+      var(--background-from),
+      var(--background-to)
+    );
+  --background-from: rgba(0, 0, 0, 0.05);
+  --background-to: rgba(0, 0, 0, 0.025);
+  --color-text: var(--color-night);
+
+  background: var(--background);
+  appearance: none;
+  padding: var(--spacing-md);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: inherit;
+  color: var(--color-text);
+
+  @media (prefers-color-scheme: dark) {
+    --background-from: rgba(0, 0, 0, 0.2);
+    --background-to: rgba(0, 0, 0, 0.15);
+    --color-text: var(--color-cream);
+  }
+
+  &:focus {
+    --background: rgba(0, 0, 0, 0.01);
+    --color-outline: var(--color-water);
+    --color-text: var(--color-black);
+
+    outline: 2px solid var(--color-outline);
+
+    @media (prefers-color-scheme: dark) {
+      --background: rgba(0, 0, 0, 0.3);
+      --color-text: var(--color-white);
+    }
+  }
+}
+
+textarea {
+  min-height: 30em;
+  resize: vertical;
+}

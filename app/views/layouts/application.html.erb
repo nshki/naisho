@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Pidr</title>
+    <title><%= content_for?(:title) ? "#{yield(:title)} | Naisho" : "Naisho" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render ContainerComponent.new do %>
+      <%= render HeaderComponent.new %>
+
+      <main>
+        <%= yield %>
+      </main>
+
+      <%= render FooterComponent.new %>
+    <% end %>
   </body>
 </html>

@@ -1,0 +1,23 @@
+<%=
+  render(
+    HeroComponent.new(
+      heading: t(".hero.heading"),
+      description: t(".hero.description"),
+    )
+  ) do |hero|
+%>
+  <% hero.with_actions do %>
+    <%= form_with url: new_bulk_deletion_request_path, method: :get, class: "mt-sm" do |form| %>
+      <p><%= t(".hero.region") %></p>
+
+      <select name="regulation" required>
+        <option value=""><%= t(".hero.region_placeholder") %></option>
+        <% @regulations.each do |regulation| %>
+          <option value="<%= regulation[:id] %>"><%= regulation[:region] %></option>
+        <% end %>
+      </select>
+
+      <%= render(ButtonComponent.new(text: t(".hero.button"), type: "submit", name: nil)) %>
+    <% end %>
+  <% end %>
+<% end %>

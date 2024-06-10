@@ -1,0 +1,32 @@
+<% content_for(:title, t(".title")) %>
+
+<%=
+  render(
+    HeroComponent.new(
+      heading: t(".hero.heading"),
+      description: t(".hero.description"),
+    )
+  )
+%>
+
+<%=
+  render(
+    StepsContentComponent.new(
+      heading: t(".steps.heading"),
+      steps: [
+        {title: t(".steps.one.title"), description: t(".steps.one.description")},
+        {title: t(".steps.two.title"), description: t(".steps.two.description")},
+        {title: t(".steps.three.title"), description: t(".steps.three.description")}
+      ]
+    )
+  )
+%>
+
+<%=
+  render(
+    FaqComponent.new(
+      heading: t(".faq.heading"),
+      questions: t(".faq.questions")
+    )
+  )
+%>

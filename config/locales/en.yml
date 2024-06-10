@@ -28,4 +28,149 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  components:
+    header:
+      nav:
+        about: "About"
+        github: "GitHub →"
+
+    requester_form:
+      smtp_provider_label: "SMTP provider"
+      smtp_username_label: "SMTP username"
+      smtp_password_label: "SMTP password"
+      email_subject_label: "Email subject"
+      email_subject_value: "Personal information deletion request"
+      email_body_label: "Email body"
+
+      # The double newlines are intentional because of the way underlying helpers parse
+      # the email body value.
+      email_body_value: >
+        Dear {COMPANY NAME},
+
+
+        I am writing to formally request the deletion of my personally identifiable information as per my rights under the %{regulation_name} (%{regulation_code}, %{region}). I am a resident and, as such, I am entitled to request the deletion of my personal data that you may have collected, processed, or sold.
+
+
+        Please find below the details necessary to identify and locate my information in your database:
+
+
+        • Full Name: [YOUR FULL NAME]
+
+        • Address: [YOUR FULL ADDRESS]
+
+        • Email Address(es): [YOUR EMAIL ADDRESS(ES)]
+
+        • Phone Number(s): [YOUR PHONE NUMBER(S)]
+
+        • Any other relevant information you may have associated with my profile
+
+
+        Under the %{regulation_code}, the above information can only be used for verification purposes and you may not collect it.
+
+
+        I kindly request that you promptly delete all of my personal information from your records and confirm in writing once this has been completed. Please also provide details on the steps taken to ensure that my data has been permanently removed from your systems and any third parties with whom you may have shared it.
+
+
+        I expect full compliance with this request within the time frame stipulated by %{region} law. Failure to do so may result in further action being taken to protect my privacy rights.
+
+
+        Thank you for your prompt attention to this matter. I look forward to receiving confirmation of the deletion of my personal information.
+
+
+        Sincerely,
+
+        [YOUR SIGNATURE NAME]
+      submit: "Send to all"
+      help: "Help, I'm confused"
+      popover:
+        smtp_heading: "What's SMTP?"
+        smtp_text: "SMTP stands for Simple Mail Transfer Protocol. It's a standard for sending emails over the internet. Naisho uses SMTP to send your emails directly from your email provider so that you don't have to sign up using your email account."
+        creds_heading: "How do I get my SMTP credentials?"
+        creds_text: "That depends on your email provider, but in general, it's your email/password combination. It's best practice to generate an app password that's separate from your regular password for one-time use. Here are help articles for each provider we support:"
+        tokens_heading: "What are these {curly braces} and [brackets] in the email body?"
+        tokens_text: "These are placeholders. The curly braces will automatically be replaced by our system when sending emails out, and the brackets are where you should fill in your verification information."
+        after_heading: "What happens after I send all these emails?"
+        after_text: "You may or may not get a response from the data brokers. Unfortunately, it's up to them to comply with your request. If you don't hear back, you can follow up with them directly or file a complaint with your region's relevant government body."
+
+    footer:
+      text: "Naisho is a free and open-source tool that helps you exercise your privacy rights. It doesn't track, collect, or store any data from you."
+
+  models:
+    deletion_request:
+      email_subject_missing: "is missing"
+      email_body:
+        missing: "is missing"
+        full_name_missing: "still has a full name placeholder"
+        full_address_missing: "still has a full address placeholder"
+        email_addresses_missing: "still has an email address placeholder"
+        phone_numbers_missing: "still has a phone number placeholder"
+        signature_name_missing: "still has a signature name placeholder"
+      company_missing: "is missing or invalid"
+      smtp_config_missing: "is missing or invalid"
+
+    company:
+      source: "Sourced from %{source}"
+
+  pages:
+    home:
+      hero:
+        heading: "Exercise your privacy rights"
+        description: "Send personal data deletion request emails to hundreds of data brokers at once. No signups, no tracking."
+        region: "I'm a resident of"
+        region_placeholder: "Choose..."
+        button: "Get started"
+
+    about:
+      title: "About"
+
+      hero:
+        heading: "About"
+        description: "Naisho is a free and open-source tool that helps you exercise your privacy rights. It doesn't track, collect, or store any data from you."
+
+      steps:
+        heading: "How it works"
+        one:
+          title: "Draft your email"
+          description: "Use a provided template to draft an email requesting the deletion of your personal information."
+        two:
+          title: "Email all data brokers"
+          description: "Send your email to all data brokers at once through your own email provider using SMTP."
+        three:
+          title: "Wait for responses"
+          description: "All responses will be sent directly to your email inbox. Any further communications are managed entirely by you."
+
+      faq:
+        heading: "FAQ"
+        questions:
+          - question: "What are data brokers?"
+            answer: "Data brokers are companies that collect, analyze, and sell personal information about individuals to other companies, often without their knowledge or consent."
+          - question: "How does this service source data brokers?"
+            answer: "Naisho uses the data broker list from the California Privacy Protection Agency (CPPA) as well as DataBrokersWatch.org."
+          - question: "How can I trust this service?"
+            answer: "Naisho is completely open-source. The site you are using right now is operated by the same code you can find on our GitHub repository."
+          - question: "Can I run this service myself? Can I self-host this?"
+            answer: "Yes and yes! You can find the source code and instructions on running the app locally or self-hosting on GitHub."
+          - question: "The email template has placeholders for personal information. What if I don't want to give that out?"
+            answer: "The email template includes language to explicitly prohibit the collection of included personal information, but you are free to edit the email as you see fit."
+          - question: "What if I don't get a response from a data broker?"
+            answer: "Unfortunately, it's up to the data broker to comply with your request. If you don't hear back, you can follow up with them directly or file a complaint with your region's relevant government body."
+          - question: "I want to help. How can I contribute?"
+            answer: "Naisho is open-source and contributions are welcome. You can find the source code and join the discussion on GitHub."
+
+  bulk_deletion_requests:
+    new:
+      title: "New bulk deletion request"
+      hero:
+        heading: "Ask %{company_count} data brokers to delete your data"
+        description: "Draft an email below and send it to all data brokers at once through your own email provider. Nothing is stored on our servers."
+
+    create:
+      notice: "Deletion requests being sent through your SMTP provider. Check your email outbox for confirmation."
+      smtp_authentication_alert: "SMTP authentication failed. Please check your SMTP username and password."
+
+  companies:
+    index:
+      title: "Companies"
+      hero:
+        heading: "Companies"
+        description: "This is the full list of companies in our database. We source from the California Privacy Protection Agency (CPPA) as well as DataBrokersWatch.org. Last updated: %{last_updated_at} UTC."

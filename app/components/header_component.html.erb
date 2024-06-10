@@ -1,0 +1,18 @@
+<header class="header">
+  <%= link_to root_path, class: "header__logo" do %>
+    <%= render LogoComponent.new %>
+    Naisho
+  <% end %>
+
+  <%=
+    render(
+      NavComponent.new(
+        items: [
+          {text: t("components.header.nav.about"), url: about_path},
+          {text: t("components.header.nav.companies"), url: companies_path},
+          {text: t("components.header.nav.github"), url: "https://github.com/nshki/naisho", external: true}
+        ]
+      )
+    )
+  %>
+</header>

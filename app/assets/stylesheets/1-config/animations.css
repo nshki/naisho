@@ -1,0 +1,13 @@
+@keyframes slide-in {
+  from {
+    max-height: 0;
+    opacity: 0;
+    overflow-y: hidden;
+  }
+
+  to {
+    max-height: var(--slide-in-height);
+    opacity: 1;
+    overflow-y: visible;
+  }
+}

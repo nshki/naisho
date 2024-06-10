@@ -1,0 +1,18 @@
+.logo {
+  --color: var(--color-water);
+  --size: 2.5rem;
+
+  display: block;
+  width: var(--size);
+  height: var(--size);
+  border: 2px solid var(--color);
+  border-radius: 100%;
+
+  a:is(:hover, :focus) & {
+    background-color: var(--color);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: var(--transition);
+  }
+}

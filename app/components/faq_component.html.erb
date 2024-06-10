@@ -1,0 +1,12 @@
+<div class="faq">
+  <% if @heading.present? %>
+    <h2 class="faq__heading"><%= @heading %></h2>
+  <% end %>
+
+  <% @questions.each do |question| %>
+    <details class="faq__details">
+      <summary class="faq__details__question"><%= question[:question] %></summary>
+      <p class="faq__details__answer"><%= question[:answer] %></p>
+    </details>
+  <% end %>
+</div>

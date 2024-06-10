@@ -1,0 +1,22 @@
+# == Schema Information
+#
+# Table name: companies
+#
+#  id         :integer          not null, primary key
+#  category   :string           not null
+#  email      :string           not null
+#  name       :string           not null
+#  website    :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_companies_on_category  (category)
+#  index_companies_on_website   (website) UNIQUE
+#
+california_data_broker:
+  category: "california_data_broker"
+  email: "test-ca-broker@localhost"
+  name: "Test CA Broker"
+  website: "https://test-ca-broker.localhost"
