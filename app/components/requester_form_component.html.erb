@@ -1,134 +1,136 @@
-<%= form_with(url: @url, class: "requester-form") do |form| %>
-  <%= form.hidden_field :regulation, value: params[:regulation] %>
+<div class="requester-form-wrapper">
+  <%= form_with(url: @url, class: "requester-form") do |form| %>
+    <%= form.hidden_field :regulation, value: params[:regulation] %>
 
-  <div class="requester-form__primary">
-    <div class="requester-form__field">
-      <%=
-        form.label(
-          :email_subject,
-          t("components.requester_form.email_subject_label"),
-          class: "requester-form__label"
-        )
-      %>
-      <%=
-        form.text_field(
-          :email_subject,
-          required: true,
-          value: email_subject_value,
-          class: "requester-form__input"
-        )
-      %>
+    <div class="requester-form__primary">
+      <div class="requester-form__field">
+        <%=
+          form.label(
+            :email_subject,
+            t("components.requester_form.email_subject_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.text_field(
+            :email_subject,
+            required: true,
+            value: email_subject_value,
+            class: "requester-form__input"
+          )
+        %>
+      </div>
+
+      <div class="requester-form__field">
+        <%=
+          form.label(
+            :email_body,
+            t("components.requester_form.email_body_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.text_area(
+            :email_body,
+            required: true,
+            value: email_body_value,
+            class: "requester-form__textarea"
+          )
+        %>
+      </div>
     </div>
 
-    <div class="requester-form__field">
-      <%=
-        form.label(
-          :email_body,
-          t("components.requester_form.email_body_label"),
-          class: "requester-form__label"
-        )
-      %>
-      <%=
-        form.text_area(
-          :email_body,
-          required: true,
-          value: email_body_value,
-          class: "requester-form__textarea"
-        )
-      %>
-    </div>
-  </div>
+    <div class="requester-form__secondary">
+      <div class="requester-form__field">
+        <%=
+          form.label(
+            :smtp_provider,
+            t("components.requester_form.smtp_provider_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.select(
+            :smtp_provider,
+            smtp_provider_options,
+            selected: smtp_provider_selected,
+            class: "requester-form__input"
+          )
+        %>
+      </div>
 
-  <div class="requester-form__secondary">
-    <div class="requester-form__field">
-      <%=
-        form.label(
-          :smtp_provider,
-          t("components.requester_form.smtp_provider_label"),
-          class: "requester-form__label"
-        )
-      %>
-      <%=
-        form.select(
-          :smtp_provider,
-          smtp_provider_options,
-          selected: smtp_provider_selected,
-          class: "requester-form__input"
-        )
-      %>
-    </div>
+      <div class="requester-form__field">
+        <%=
+          form.label(
+            :smtp_username,
+            t("components.requester_form.smtp_username_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.text_field(
+            :smtp_username,
+            required: true,
+            value: smtp_username_value,
+            class: "requester-form__input"
+          )
+        %>
+      </div>
 
-    <div class="requester-form__field">
-      <%=
-        form.label(
-          :smtp_username,
-          t("components.requester_form.smtp_username_label"),
-          class: "requester-form__label"
-        )
-      %>
-      <%=
-        form.text_field(
-          :smtp_username,
-          required: true,
-          value: smtp_username_value,
-          class: "requester-form__input"
-        )
-      %>
-    </div>
+      <div class="requester-form__field">
+        <%=
+          form.label(
+            :smtp_password,
+            t("components.requester_form.smtp_password_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.password_field(
+            :smtp_password,
+            required: true,
+            class: "requester-form__input"
+          )
+        %>
+      </div>
 
-    <div class="requester-form__field">
-      <%=
-        form.label(
-          :smtp_password,
-          t("components.requester_form.smtp_password_label"),
-          class: "requester-form__label"
-        )
-      %>
-      <%=
-        form.password_field(
-          :smtp_password,
-          required: true,
-          class: "requester-form__input"
-        )
-      %>
-    </div>
-
-    <% if show_flash? %>
-      <% if errors? %>
-        <ul class="requester-form__flash">
-          <% errors.each do |error| %>
-            <li><%= error %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="requester-form__flash"><%= flash_message %></p>
+      <% if show_flash? %>
+        <% if errors? %>
+          <ul class="requester-form__flash">
+            <% errors.each do |error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="requester-form__flash"><%= flash_message %></p>
+        <% end %>
       <% end %>
-    <% end %>
 
-    <div class="requester-form__actions">
-      <%=
-        render(
-          ButtonComponent.new(
-            text: t("components.requester_form.submit"),
-            type: "submit",
-            name: nil
+      <div class="requester-form__actions">
+        <%=
+          render(
+            ButtonComponent.new(
+              text: t("components.requester_form.submit"),
+              type: "submit",
+              name: nil
+            )
           )
-        )
-      %>
-
-      <%=
-        render(
-          ButtonComponent.new(
-            text: t("components.requester_form.help"),
-            variant: :secondary,
-            type: "button",
-            popovertarget: "requester-form-popover"
-          )
-        )
-      %>
+        %>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+  <%=
+    render(
+      ButtonComponent.new(
+        text: t("components.requester_form.help"),
+        variant: :secondary,
+        type: "button",
+        popovertarget: "requester-form-popover"
+      )
+    )
+  %>
+</div>
 
 <div class="requester-form__popover" popover id="requester-form-popover">
   <div class="requester-form__popover__inner">
