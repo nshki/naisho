@@ -1,6 +1,6 @@
 .logo {
   --color: var(--color-water);
-  --size: 2.5rem;
+  --size: 2rem;
 
   display: block;
   width: var(--size);
@@ -10,6 +10,10 @@
 
   a:is(:hover, :focus) & {
     background-color: var(--color);
+  }
+
+  @media (min-width: 500px) {
+    --size: 2.5rem;
   }
 
   @media (prefers-reduced-motion: no-preference) {
