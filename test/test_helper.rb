@@ -19,6 +19,12 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Add more helper methods to be used by all tests here...
+    # Reset test states after each test.
+    #
+    # @return [void]
+    def teardown
+      super
+      Mocktail.reset
+    end
   end
 end
