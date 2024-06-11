@@ -44,7 +44,7 @@ class BulkDeletionRequest
   #
   # @return [void]
   def generate_emails
-    Company.all.find_each.with_index do |company, index|
+    Company.all.group(:email).find_each.with_index do |company, index|
       deletion_request = DeletionRequest.new \
         company: company,
         smtp_config: smtp_config,

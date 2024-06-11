@@ -10,13 +10,17 @@ module Company::DataBrokersWatchRequestable
   end
 
   class_methods do
+    # Attempts to fetch and update all companies available via the DataBrokersWatch API.
+    #
+    # @return [void]
     def update_data_brokers_watch_companies
       response = Net::HTTP.get(API_URI)
       response_json = JSON.parse(response)
       companies = response_json.dig("DataBrokers")
 
       companies.each do |company|
-        email = company.dig("Emails").split(";").first
+        emails = company.dig("Emails").split(";")
+        email = Company.most_likely_email(emails)
         name = company.dig("Company Name") || company.dig("Domain")
         website = company.dig("Domain")
         next if email.blank? || name.blank? || website.blank?

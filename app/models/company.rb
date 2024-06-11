@@ -18,6 +18,8 @@
 class Company < ApplicationRecord
   include CaliforniaDataBrokersRequestable
   include DataBrokersWatchRequestable
+  include Sanitizable
+  include EmailCorrectable # Important to be after `Sanitizable`
 
   CATEGORIES = {
     california_data_broker: "california_data_broker",
@@ -28,24 +30,6 @@ class Company < ApplicationRecord
   validates :email, presence: true, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates :name, presence: true
   validates :website, presence: true, uniqueness: true
-
-  before_save :domainify_website!
-  before_save :downcase_email!
-
-  # Ensures we're only saving website domains to better enforce uniqueness.
-  #
-  # @return [void]
-  def domainify_website!
-    hostified_website = URI(website).host || website
-    self.website = hostified_website.gsub(/^www\./, "")
-  end
-
-  # Ensures we're normalizing emails before saving.
-  #
-  # @return [void]
-  def downcase_email!
-    email.downcase!
-  end
 
   # Generates a human-readable source from which this company was gathered.
   #

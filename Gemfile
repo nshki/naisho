@@ -32,6 +32,7 @@ end
 
 group :test do
   gem "capybara"
+  gem "mocktail"
   gem "selenium-webdriver"
   gem "simplecov", require: false
 end

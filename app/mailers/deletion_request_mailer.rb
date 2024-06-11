@@ -11,7 +11,7 @@ class DeletionRequestMailer < ApplicationMailer
       password: @deletion_request.smtp_config.password,
       address: @deletion_request.smtp_config.address,
       port: @deletion_request.smtp_config.port,
-      authentication: :login
+      authentication: @deletion_request.smtp_config.authentication
     }
 
     mail \
