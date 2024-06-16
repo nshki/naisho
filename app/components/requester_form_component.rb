@@ -47,7 +47,9 @@ class RequesterFormComponent < ApplicationComponent
   #
   # @return [Array<String, String>]
   def smtp_provider_options
-    SmtpConfig::PROVIDERS.map { |key, value| [value[:label], key] }
+    supported_provider_options =
+      SmtpConfig::PROVIDERS.map { |key, value| [value[:label], key] }
+    supported_provider_options << [I18n.t("components.requester_form.smtp_other_provider"), "other"]
   end
 
   # Gives the SMTP provider field's selected value.
@@ -57,6 +59,20 @@ class RequesterFormComponent < ApplicationComponent
     retained_value = @bulk_deletion_request&.params&.dig("smtp_provider")
     first_provider = SmtpConfig::PROVIDERS.keys.first
     retained_value || first_provider
+  end
+
+  # Gives the SMTP host field's value, if any.
+  #
+  # @return [String, nil]
+  def smtp_host_value
+    @bulk_deletion_request&.params&.dig("smtp_host")
+  end
+
+  # Gives the SMTP port field's value, if any.
+  #
+  # @return [String, nil]
+  def smtp_port_value
+    @bulk_deletion_request&.params&.dig("smtp_port")
   end
 
   # Gives the SMTP provider field's value, if any.
