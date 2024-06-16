@@ -24,10 +24,12 @@ module Company::CaliforniaDataBrokersRequestable
         next if email.blank? || name.blank? || website.blank?
 
         company = Company.find_or_initialize_by(email: email)
-        company.update \
-          category: Company::CATEGORIES[:california_data_broker],
-          name: name,
-          website: website
+        if company.name != name || company.website != website
+          company.update \
+            category: Company::CATEGORIES[:california_data_broker],
+            name: name,
+            website: website
+        end
       rescue ActiveRecord::RecordNotUnique
       end
     end
