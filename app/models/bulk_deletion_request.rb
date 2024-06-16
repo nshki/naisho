@@ -67,6 +67,8 @@ class BulkDeletionRequest
   def smtp_config
     @_smtp_config ||= SmtpConfig.new \
       provider: @params[:smtp_provider],
+      host: @params[:smtp_host],
+      port: @params[:smtp_port],
       username: @params[:smtp_username],
       password: @params[:smtp_password]
   end
