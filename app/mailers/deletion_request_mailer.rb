@@ -10,7 +10,7 @@ class DeletionRequestMailer < ApplicationMailer
       user_name: @deletion_request.smtp_config.username,
       password: @deletion_request.smtp_config.password,
       address: @deletion_request.smtp_config.address,
-      port: @deletion_request.smtp_config.port,
+      port: @deletion_request.smtp_config.provider_port,
       authentication: @deletion_request.smtp_config.authentication
     }
 

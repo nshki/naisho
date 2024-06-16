@@ -15,6 +15,8 @@
 #  index_companies_on_category  (category)
 #  index_companies_on_website   (website) UNIQUE
 #
+require "test_helper"
+
 class CompanyTest < ActiveSupport::TestCase
   test "valid object" do
     company = Company.new \

@@ -1,3 +1,5 @@
+require "test_helper"
+
 class DeletionRequestFlowsTest < ActionDispatch::IntegrationTest
   test "able to deliver emails for a valid bulk deletion request" do
     # Creating an extra California data broker company separate from fixtures.
@@ -27,6 +29,24 @@ class DeletionRequestFlowsTest < ActionDispatch::IntegrationTest
     # The rest of the emails should be able to be delivered later.
     perform_enqueued_jobs
     assert_emails 2
+  end
+
+  test "able to deliver emails for a valid bulk deletion request with other provider" do
+    post \
+      bulk_deletion_requests_path,
+      params: {
+        email_subject: "Test deletion request subject",
+        email_body: "Test deletion request body",
+        smtp_provider: "other",
+        smtp_host: "smtp.localhost",
+        smtp_port: 587,
+        smtp_username: "test_username",
+        smtp_password: "test_password"
+      }
+
+    assert_emails 1
+    assert_redirected_to new_bulk_deletion_request_path
+    assert_equal "Deletion requests being sent through your SMTP provider. Check your email outbox for confirmation.", flash[:notice]
   end
 
   # It's possible for multiple companies to have the same contact email address

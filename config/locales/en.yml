@@ -36,8 +36,11 @@ en:
 
     requester_form:
       smtp_provider_label: "SMTP provider"
+      smtp_host_label: "SMTP host"
+      smtp_port_label: "SMTP port"
       smtp_username_label: "SMTP username"
       smtp_password_label: "SMTP password"
+      smtp_other_provider: "Other"
       email_subject_label: "Email subject"
       email_subject_value: "Personal information deletion request"
       email_body_label: "Email body"

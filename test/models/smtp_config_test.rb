@@ -1,3 +1,5 @@
+require "test_helper"
+
 class SmtpConfigTest < ActiveSupport::TestCase
   test "valid object" do
     smtp_config = SmtpConfig.new \
@@ -8,9 +10,40 @@ class SmtpConfigTest < ActiveSupport::TestCase
     assert smtp_config.valid?
   end
 
+  test "valid object with other provider" do
+    smtp_config = SmtpConfig.new \
+      provider: "other",
+      host: "smtp.localhost",
+      port: 587,
+      username: "test_username",
+      password: "test_password"
+
+    assert smtp_config.valid?
+  end
+
   test "invalid without a valid provider" do
     smtp_config = SmtpConfig.new \
       provider: "invalid_provider",
+      username: "test_username",
+      password: "test_password"
+
+    assert smtp_config.invalid?
+  end
+
+  test "invalid without host for other provider" do
+    smtp_config = SmtpConfig.new \
+      provider: "other",
+      port: 587,
+      username: "test_username",
+      password: "test_password"
+
+    assert smtp_config.invalid?
+  end
+
+  test "invalid without port for other provider" do
+    smtp_config = SmtpConfig.new \
+      provider: "other",
+      host: "smtp.localhost",
       username: "test_username",
       password: "test_password"
 
@@ -33,7 +66,7 @@ class SmtpConfigTest < ActiveSupport::TestCase
     assert smtp_config.invalid?
   end
 
-  test "#address" do
+  test "#address returns correct value for standard provider" do
     smtp_config = SmtpConfig.new \
       provider: "gmail",
       username: "test_username",
@@ -42,12 +75,34 @@ class SmtpConfigTest < ActiveSupport::TestCase
     assert_equal "smtp.gmail.com", smtp_config.address
   end
 
-  test "#port" do
+  test "#address returns correct value for other provider" do
+    smtp_config = SmtpConfig.new \
+      provider: "other",
+      host: "smtp.localhost",
+      port: 123,
+      username: "test_username",
+      password: "test_password"
+
+    assert_equal "smtp.localhost", smtp_config.address
+  end
+
+  test "#provider_port returns correct value for standard provider" do
     smtp_config = SmtpConfig.new \
       provider: "gmail",
       username: "test_username",
       password: "test_password"
 
-    assert_equal 587, smtp_config.port
+    assert_equal 587, smtp_config.provider_port
+  end
+
+  test "#provider_port returns correct value for other provider" do
+    smtp_config = SmtpConfig.new \
+      provider: "other",
+      host: "smtp.localhost",
+      port: 123,
+      username: "test_username",
+      password: "test_password"
+
+    assert_equal 123, smtp_config.provider_port
   end
 end

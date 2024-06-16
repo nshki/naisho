@@ -1,3 +1,5 @@
+require "test_helper"
+
 class DeletionRequestTest < ActiveSupport::TestCase
   test "valid object" do
     smtp_config = SmtpConfig.new \

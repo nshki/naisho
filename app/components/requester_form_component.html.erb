@@ -62,6 +62,41 @@
       <div class="requester-form__field">
         <%=
           form.label(
+            :smtp_host,
+            t("components.requester_form.smtp_host_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.text_field(
+            :smtp_host,
+            placeholder: "smtp.email.provider",
+            value: smtp_host_value,
+            class: "requester-form__input"
+          )
+        %>
+      </div>
+
+      <div class="requester-form__field">
+        <%=
+          form.label(
+            :smtp_port,
+            t("components.requester_form.smtp_port_label"),
+            class: "requester-form__label"
+          )
+        %>
+        <%=
+          form.text_field(
+            :smtp_port,
+            value: smtp_port_value,
+            class: "requester-form__input"
+          )
+        %>
+      </div>
+
+      <div class="requester-form__field">
+        <%=
+          form.label(
             :smtp_username,
             t("components.requester_form.smtp_username_label"),
             class: "requester-form__label"
