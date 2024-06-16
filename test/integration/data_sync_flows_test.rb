@@ -1,3 +1,5 @@
+require "test_helper"
+
 class DataSyncFlowsTest < ActionDispatch::IntegrationTest
   test "CPPA data brokers syncable" do
     assert_equal 1, Company.count # We start off with one fixture
