@@ -70,7 +70,8 @@ class SmtpConfigTest < ActiveSupport::TestCase
     smtp_config = SmtpConfig.new \
       provider: "gmail",
       username: "test_username",
-      password: "test_password"
+      password: "test_password",
+      host: ""
 
     assert_equal "smtp.gmail.com", smtp_config.address
   end
@@ -90,7 +91,8 @@ class SmtpConfigTest < ActiveSupport::TestCase
     smtp_config = SmtpConfig.new \
       provider: "gmail",
       username: "test_username",
-      password: "test_password"
+      password: "test_password",
+      port: ""
 
     assert_equal 587, smtp_config.provider_port
   end
