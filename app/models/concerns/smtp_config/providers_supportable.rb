@@ -44,14 +44,14 @@ module SmtpConfig::ProvidersSupportable
   #
   # @return [String]
   def address
-    host || PROVIDERS.dig(provider.to_sym, :address)
+    host.present? ? host : PROVIDERS.dig(provider.to_sym, :address)
   end
 
   # Returns the port of the SMTP provider.
   #
   # @return [Integer]
   def provider_port
-    port || PROVIDERS.dig(provider.to_sym, :port)
+    port.present? ? port : PROVIDERS.dig(provider.to_sym, :port)
   end
 
   # Returns the authentication method of the SMTP provider.
