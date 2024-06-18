@@ -112,10 +112,12 @@
   }
 }
 
-ul.requester-form__flash {
+.requester-form__flash--alert {
   --color-background: #ff000033;
   --color-border: #ff0000;
+}
 
+ul.requester-form__flash {
   padding-left: var(--spacing-lg);
   list-style: square;
 }

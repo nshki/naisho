@@ -15,7 +15,7 @@ class BulkDeletionRequestsController < ApplicationController
 
     begin
       @bulk_deletion_request.deliver_emails
-    rescue Net::SMTPAuthenticationError
+    rescue
       flash.now[:alert] = t(".smtp_authentication_alert")
       render(:new, status: :unprocessable_entity) && return
     end
