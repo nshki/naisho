@@ -96,11 +96,18 @@ class RequesterFormComponent < ApplicationComponent
     @flash[:notice]
   end
 
+  # Determines if the flash is an error.
+  #
+  # @return [Boolean]
+  def error?
+    @flash[:alert].present?
+  end
+
   # Determines if the flash has errors.
   #
   # @return [Boolean]
   def errors?
-    @flash[:alert].present? && @flash[:alert].is_a?(Array)
+    @flash[:alert].is_a?(Array)
   end
 
   # Fetches errors from the flash.

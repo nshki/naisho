@@ -131,11 +131,15 @@
 
       <% if show_flash? %>
         <% if errors? %>
-          <ul class="requester-form__flash">
+          <ul class="requester-form__flash requester-form__flash--alert">
             <% errors.each do |error| %>
               <li><%= error %></li>
             <% end %>
           </ul>
+        <% elsif error? %>
+          <p class="requester-form__flash requester-form__flash--alert">
+            <%= errors %>
+          </p>
         <% else %>
           <p class="requester-form__flash"><%= flash_message %></p>
         <% end %>
