@@ -122,6 +122,11 @@ en:
         region: "I'm a resident of"
         region_placeholder: "Choose..."
         button: "Get started"
+        no_region: "Why don't I see my region here?"
+
+      no_region_modal:
+        - heading: "Why don't I see my region here?"
+          paragraph: "Naisho aims to be available for all regions with strong data privacy laws. If you don't see your region listed and believe it should be, please open an issue or pull request on GitHub."
 
     about:
       title: "About"
