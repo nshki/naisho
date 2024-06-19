@@ -1,3 +1,20 @@
 .mt-sm {
   margin-top: var(--spacing-sm);
 }
+
+.link {
+  --color-background: transparent;
+  --color-text: var(--color-water);
+
+  background: var(--color-background);
+  appearance: none;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.text-center {
+  text-align: center;
+}
