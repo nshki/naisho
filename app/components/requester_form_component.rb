@@ -89,32 +89,32 @@ class RequesterFormComponent < ApplicationComponent
     @flash.present?
   end
 
-  # Gives the flash message, if any.
+  # Fetches string from the notice flash.
   #
   # @return [String, nil]
-  def flash_message
+  def notice_flash
     @flash[:notice]
+  end
+
+  # Fetches string from the alert flash.
+  #
+  # @return [Array<String>]
+  def alert_flash
+    @flash[:alert]
   end
 
   # Determines if the flash is an error.
   #
   # @return [Boolean]
-  def error?
+  def single_error?
     @flash[:alert].present?
   end
 
   # Determines if the flash has errors.
   #
   # @return [Boolean]
-  def errors?
+  def multiple_errors?
     @flash[:alert].is_a?(Array)
-  end
-
-  # Fetches errors from the flash.
-  #
-  # @return [Array<String>]
-  def errors
-    @flash[:alert]
   end
 
   # Gets a list of providers and links to their app password articles.

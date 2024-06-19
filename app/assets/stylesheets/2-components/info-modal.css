@@ -1,0 +1,42 @@
+.info-modal {
+  --color-background: var(--color-white);
+  --color-text: var(--color-text);
+
+  background-color: var(--color-background);
+  max-width: 768px;
+  max-height: calc(100vh - var(--spacing-xl));
+  padding: var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  overflow-y: auto;
+
+  @media (prefers-color-scheme: dark) {
+    --color-background: var(--color-night);
+  }
+
+  &::backdrop {
+    --color-background: rgba(0, 0, 0, 0.1);
+
+    background: var(--color-background);
+    backdrop-filter: blur(2px);
+  }
+
+  a {
+    --color-text: var(--color-water);
+
+    color: var(--color-text);
+  }
+}
+
+.info-modal__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.info-modal__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}

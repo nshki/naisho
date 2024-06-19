@@ -130,18 +130,18 @@
       </div>
 
       <% if show_flash? %>
-        <% if errors? %>
+        <% if multiple_errors? %>
           <ul class="requester-form__flash requester-form__flash--alert">
-            <% errors.each do |error| %>
+            <% alert_flash.each do |error| %>
               <li><%= error %></li>
             <% end %>
           </ul>
-        <% elsif error? %>
+        <% elsif single_error? %>
           <p class="requester-form__flash requester-form__flash--alert">
-            <%= errors %>
+            <%= alert_flash %>
           </p>
         <% else %>
-          <p class="requester-form__flash"><%= flash_message %></p>
+          <p class="requester-form__flash"><%= notice_flash %></p>
         <% end %>
       <% end %>
 
@@ -171,54 +171,31 @@
   %>
 </div>
 
-<div class="requester-form__popover" popover id="requester-form-popover">
-  <div class="requester-form__popover__inner">
-    <div class="requester-form__popover__section">
-      <h2 class="requester-form__popover__heading">
-        <%= t("components.requester_form.popover.smtp_heading") %>
-      </h2>
+<%= render InfoModalComponent.new(id: "requester-form-popover") do |component| %>
+  <% component.with_section do %>
+    <h2><%= t("components.requester_form.popover.smtp_heading") %></h2>
+    <p><%= t("components.requester_form.popover.smtp_text") %></p>
+  <% end %>
 
-      <p class="requester-form__popover__text">
-        <%= t("components.requester_form.popover.smtp_text") %>
-      </p>
-    </div>
+  <% component.with_section do %>
+    <h2><%= t("components.requester_form.popover.creds_heading") %></h2>
+    <p><%= t("components.requester_form.popover.creds_text") %></p>
+    <ul>
+      <% providers.each do |provider| %>
+        <li>
+          <%= link_to provider[:label], provider[:app_password_article_url] %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
-    <div class="requester-form__popover__section">
-      <h2 class="requester-form__popover__heading">
-        <%= t("components.requester_form.popover.creds_heading") %>
-      </h2>
+  <% component.with_section do %>
+    <h2><%= t("components.requester_form.popover.tokens_heading") %></h2>
+    <p><%= t("components.requester_form.popover.tokens_text") %></p>
+  <% end %>
 
-      <p class="requester-form__popover__text">
-        <%= t("components.requester_form.popover.creds_text") %>
-      </p>
-
-      <ul class="requester-form__popover__list">
-        <% providers.each do |provider| %>
-          <li class="requester-form__popover__list-item">
-            <%= link_to provider[:label], provider[:app_password_article_url] %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="requester-form__popover__section">
-      <h2 class="requester-form__popover__heading">
-        <%= t("components.requester_form.popover.tokens_heading") %>
-      </h2>
-
-      <p class="requester-form__popover__text">
-        <%= t("components.requester_form.popover.tokens_text") %>
-      </p>
-    </div>
-
-    <div class="requester-form__popover__section">
-      <h2 class="requester-form__popover__heading">
-        <%= t("components.requester_form.popover.after_heading") %>
-      </h2>
-
-      <p class="requester-form__popover__text">
-        <%= t("components.requester_form.popover.after_text") %>
-      </p>
-    </div>
-  </div>
-</div>
+  <% component.with_section do %>
+    <h2><%= t("components.requester_form.popover.after_heading") %></h2>
+    <p><%= t("components.requester_form.popover.after_text") %></p>
+  <% end %>
+<% end %>

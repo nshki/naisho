@@ -14,11 +14,16 @@ module Company::Sanitizable
     name.strip!
   end
 
-  # Ensures we're only saving website domains to better enforce uniqueness.
+  # Ensures we're only saving website domains to better enforce uniqueness. This
+  # effectively means we're not storing HTTP, HTTPS, or `www`. We're also doing
+  # a regex extraction to account for incorrectly formatted URLs from third-party
+  # sources.
   #
   # @return [void]
   def domainify_website!
-    hostified_website = URI(website).host || website
+    stripped_website = website.strip
+    extracted_website = stripped_website.scan(/[\w|\d\.]+/).last
+    hostified_website = URI(extracted_website).host || extracted_website || stripped_website
     self.website = hostified_website.gsub(/^www\./, "")
   end
 
@@ -26,6 +31,6 @@ module Company::Sanitizable
   #
   # @return [void]
   def downcase_email!
-    email.downcase!
+    self.email = email.strip.downcase
   end
 end
