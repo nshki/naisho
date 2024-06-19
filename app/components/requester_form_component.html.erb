@@ -183,7 +183,13 @@
     <ul>
       <% providers.each do |provider| %>
         <li>
-          <%= link_to provider[:label], provider[:app_password_article_url] %>
+          <%=
+            link_to(
+              provider[:label],
+              provider[:app_password_article_url],
+              class: "link"
+            )
+          %>
         </li>
       <% end %>
     </ul>
