@@ -19,5 +19,22 @@
 
       <%= render(ButtonComponent.new(text: t(".hero.button"), type: "submit", name: nil)) %>
     <% end %>
+
+    <p>
+      <small>
+        <button class="link" popovertarget="no-region-modal">
+          <%= t(".hero.no_region") %>
+        </button>
+      </small>
+    </p>
+  <% end %>
+<% end %>
+
+<%= render InfoModalComponent.new(id: "no-region-modal") do |component| %>
+  <% t(".no_region_modal").each do |section| %>
+    <% component.with_section do %>
+      <h2><%= section[:heading] %></h2>
+      <p><%= section[:paragraph] %></p>
+    <% end %>
   <% end %>
 <% end %>

@@ -21,12 +21,6 @@
     background: var(--color-background);
     backdrop-filter: blur(2px);
   }
-
-  a {
-    --color-text: var(--color-water);
-
-    color: var(--color-text);
-  }
 }
 
 .info-modal__inner {
