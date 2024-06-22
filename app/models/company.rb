@@ -43,4 +43,22 @@ class Company < ApplicationRecord
 
     I18n.t("models.company.source", source: humanized_category)
   end
+
+  # Convenience method to upsert companies when multiple sources are being used.
+  # Anchors on the website to determine if the company already exists. Sanitizes
+  # the website before checking.
+  #
+  # @param website [String] Unsanitized website of the company to upsert
+  # @param attributes [Hash] Attributes to upsert company with
+  # @return [Company]
+  def self.upsert_by_website(website:, **attributes)
+    sanitized_website = Company.new(website: website).domainify_website!
+    company = Company.find_by(website: sanitized_website)
+
+    if company.present?
+      company.update(name: attributes[:name], email: attributes[:email])
+    else
+      create(website: website, **attributes)
+    end
+  end
 end
