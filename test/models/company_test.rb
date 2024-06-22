@@ -77,4 +77,34 @@ class CompanyTest < ActiveSupport::TestCase
 
     assert_equal "localhost", company.website
   end
+
+  test ".upsert_by_website doesn't override category" do
+    company = Company.create \
+      category: "california_data_broker",
+      email: "test-company@localhost",
+      name: "Test Company",
+      website: "https://localhost"
+
+    Company.upsert_by_website \
+      category: "data_brokers_watch",
+      email: "test-company-updated-email@localhost",
+      name: "Test Company with updated name",
+      website: "https://localhost"
+
+    assert_equal "california_data_broker", company.reload.category
+    assert_equal "Test Company with updated name", company.name
+    assert_equal "test-company-updated-email@localhost", company.email
+  end
+
+  test ".upsert_by_website successfully creates a new company" do
+    assert_equal 1, Company.count # Account for fixture
+
+    Company.upsert_by_website \
+      category: "california_data_broker",
+      email: "test-company@localhost",
+      name: "Test Company",
+      website: "https://localhost"
+
+    assert_equal 2, Company.count
+  end
 end
