@@ -19,17 +19,17 @@ module Company::DataBrokersWatchRequestable
       companies = response_json.dig("DataBrokers")
 
       companies.each do |company|
-        emails = company.dig("Emails").split(";")
-        email = Company.most_likely_email(emails)
-        name = company.dig("Company Name") || company.dig("Domain")
         website = company.dig("Domain")
-        next if email.blank? || name.blank? || website.blank?
+        name = company.dig("Company Name") || company.dig("Domain")
+        emails = company.dig("Emails").split(";")
+        email = most_likely_email(emails)
+        next if website.blank? || name.blank? || email.blank?
 
-        company = Company.find_or_initialize_by(email: email)
-        company.update \
-          category: Company::CATEGORIES[:data_brokers_watch],
+        upsert_by_website \
+          website: website,
           name: name,
-          website: website
+          email: email,
+          category: Company::CATEGORIES[:data_brokers_watch]
       rescue ActiveRecord::RecordNotUnique
       end
     end

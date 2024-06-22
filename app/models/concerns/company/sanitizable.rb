@@ -9,7 +9,7 @@ module Company::Sanitizable
 
   # Ensures we're stripping leading and trailing whitespace from the name.
   #
-  # @return [void]
+  # @return [String]
   def strip_name!
     name.strip!
   end
@@ -19,7 +19,7 @@ module Company::Sanitizable
   # a regex extraction to account for incorrectly formatted URLs from third-party
   # sources.
   #
-  # @return [void]
+  # @return [String]
   def domainify_website!
     stripped_website = website.strip
     extracted_website = stripped_website.scan(/[\w|\d\.]+/).last
@@ -29,7 +29,7 @@ module Company::Sanitizable
 
   # Ensures we're normalizing emails before saving.
   #
-  # @return [void]
+  # @return [String]
   def downcase_email!
     self.email = email.strip.downcase
   end
