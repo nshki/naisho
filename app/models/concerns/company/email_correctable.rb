@@ -16,6 +16,7 @@ module Company::EmailCorrectable
     "carevoyance.com" => "privacy@definitivehc.com", # https://www.definitivehc.com/privacy-center/notices
     "catalina.com" => "dpo@catalina.com", # https://www.catalina.com/legal
     "cbcinnovis.com" => "clientsuccess@factualdata.com", # https://www.factualdata.com/privacy/privacy-policy
+    "checkpeople.com" => "privacy@checkpeople.com", # https://checkpeople.com/company/privacy-policy
     "compactlists.com" => "privacy.compliance@deepsync.com", # https://deepsync.com/privacy-policy/
     "dataverify.com" => "info@dataverify.com", # https://info.dataverify.com/privacy
     "digicenter.com" => "privacy@collectivedata.io", # https://www.collectivedata.io/website-visitor-privacy-policy/
@@ -84,12 +85,12 @@ module Company::EmailCorrectable
     "dataaxlenonprofit.com" => "privacyteam@data-axle.com", # https://www.dataaxlenonprofit.com/privacy-policy/
     "datadelivers.com" => "privacy@datadelivers.com", # https://datadelivers.com/privacy-policy/
     "datadirectmarketing.com" => "info@datadirectmarketing.com", # https://datadirectmarketing.com/
-    "datasys.com" => "support@datasys.com", # https://datasys.com/privacy-policy
+    "datasys.com" => "info@datasys.com", # https://datasys.com/privacy-policy
     "deloitte.com" => "usprivacyquestions@deloitte.com", # https://www2.deloitte.com/us/en/footerlinks1/privacy.html
     "deluxe.com" => "privacy@deluxe.com", # https://www.deluxe.com/policy/privacy/
     "digdevdirect.com" => "support@digdevdirect.com", # https://www.digdevdirect.com/privacy-policy/
     "disqus.com" => "privacy@disqus.com", # https://disqus.com/privacy-policy/
-    "emerges.com" => "privacy@emerges.com", # https://www.emerges.com/Privacy-Policy_ep_42-1.html
+    "emerges.com" => "data@emerges.com", # https://www.emerges.com/Privacy-Policy_ep_42-1.html
     "evorra.com" => "hello@evorra.com", # https://evorra.com/privacy-data-policies/privacy-policy/
     "fetcher.ai" => "support@fetcher.ai", # https://fetcher.ai/privacy
     "findem.ai" => "privacy@findem.ai", # https://www.findem.ai/privacy-policy
