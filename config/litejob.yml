@@ -1,0 +1,3 @@
+retries: 5
+retry_delay: 43200          # 12 hours = 60 seconds * 60 * 12 = 43200 seconds
+retry_delay_multiplier: 2   # 12 hours -> one day -> two days, etc.
