@@ -12,7 +12,7 @@ Naisho is a free and open-source tool for sending personal information data dele
 ## Local setup (native)
 
 1. Clone the repo.
-2. Install [Ruby](https://www.ruby-lang.org/en/) v3.3.2.
+2. Install [Ruby](https://www.ruby-lang.org/en/) v3.3.6.
 3. Install [SQLite3](https://www.sqlite.org/index.html).
 4. Run `bin/setup` to install Ruby dependencies and set up the database.
 5. Run `bin/rake sync_companies` to pull the latest data broker companies from sources.
