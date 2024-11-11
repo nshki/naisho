@@ -4,37 +4,42 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem "sqlite3"
 #
-# `Litesupport.root.join("data.sqlite3")` stores
-# application data in the path `./db/#{Rails.env}/data.sqlite3`
-#
-# `Litesupport.root(env).join(path)` stores 
-# application data in the path `./db/#{env}/#{path}`
-#
-# idle_timeout should be set to zero, to avoid recycling sqlite connections
-# and losing the page cache
-# 
 default: &default
-  adapter: litedb
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  idle_timeout: 0
+  timeout: 5000
 
 development:
   <<: *default
-  database: <%= Litesupport.root("development").join("data.sqlite3") %>
+  database: storage/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= Litesupport.root("test").join("data.sqlite3") %>
+  database: storage/test.sqlite3
 
-# Warning: Make sure your production database path is on a persistent
-# volume, otherwise your application data could be deleted between deploys.
-#
-# You may also set the Litesupport.root in production via the
-# `LITESTACK_DATA_PATH` environment variable.
+
+# Store production database in the storage/ directory, which by default
+# is mounted as a persistent Docker volume in config/deploy.yml.
 production:
-  <<: *default
-  database: <%= Litesupport.root("production").join("data.sqlite3") %>
-
+  primary:
+    <<: *default
+    database: storage/production.sqlite3
+    url: <%= ENV["DATABASE_URL"] %>
+  cache:
+    <<: *default
+    database: storage/production_cache.sqlite3
+    migrations_paths: db/cache_migrate
+    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_cache" } if ENV["DATABASE_URL"] %>
+  queue:
+    <<: *default
+    database: storage/production_queue.sqlite3
+    migrations_paths: db/queue_migrate
+    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_queue" } if ENV["DATABASE_URL"] %>
+  cable:
+    <<: *default
+    database: storage/production_cable.sqlite3
+    migrations_paths: db/cable_migrate
+    url: <%= URI.parse(ENV["DATABASE_URL"]).tap { |url| url.path += "_cable" } if ENV["DATABASE_URL"] %>

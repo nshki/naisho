@@ -13,13 +13,13 @@ jobs:
           bundler-cache: true
 
       - name: Set up project
-        run: bin/setup
+        run: bin/setup --skip-server
 
       - name: Run Standard
         run: bundle exec standardrb --fail-level A
 
       - name: Run Annotate
-        run: bundle exec annotate --frozen
+        run: bundle exec annotaterb models --frozen
 
       - name: Run Chusaku
         run: bundle exec chusaku --dry-run --exit-with-error-on-annotation

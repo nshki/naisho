@@ -1,19 +1,19 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.3.2"
-
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
 gem "csv"
 gem "dockerfile-rails", ">= 1.6", group: :development
 gem "importmap-rails"
 gem "jbuilder"
-gem "litestack", github: "oldmoe/litestack"
-gem "puma", ">= 5.0"
-gem "rails", "~> 7.1.3", ">= 7.1.3.4"
-gem "sprockets-rails"
-gem "sqlite3", "~> 1.4"
+gem "propshaft"
+gem "puma", "~> 6.0"
+gem "rails", "~> 8.0.0"
+gem "solid_cable"
+gem "solid_cache"
+gem "solid_queue"
+gem "sqlite3"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
@@ -25,7 +25,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "annotate"
+  gem "annotaterb"
   gem "chusaku", require: false
   gem "web-console"
 end
