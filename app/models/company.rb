@@ -61,4 +61,12 @@ class Company < ApplicationRecord
       create(website: website, **attributes)
     end
   end
+
+  # Convenience method to sync all companies from sources.
+  #
+  # @return [void]
+  def self.sync_all
+    Company.update_california_data_brokers
+    Company.update_data_brokers_watch_companies
+  end
 end
