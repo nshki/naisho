@@ -4,7 +4,7 @@ Naisho is a free and open-source tool for sending personal information data dele
 
 ## Stack
 
-- [Ruby on Rails](https://rubyonrails.org/) v8.0.0
+- [Ruby on Rails](https://rubyonrails.org/)
 - [Hotwire](https://hotwired.dev/)
 - [SQLite3](https://www.sqlite.org/index.html)
 - [ViewComponent](https://viewcomponent.org/)
