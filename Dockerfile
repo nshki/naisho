@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3.6
+ARG RUBY_VERSION=3.4.1
 FROM ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
@@ -24,7 +24,7 @@ FROM base AS build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-  apt-get install --no-install-recommends -y build-essential pkg-config
+  apt-get install --no-install-recommends -y build-essential pkg-config libyaml-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
