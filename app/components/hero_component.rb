@@ -1,6 +1,7 @@
 # Renders a large section that gives the TL;DR of the page.
 class HeroComponent < ApplicationComponent
   renders_one :actions
+  renders_one :notice, "NoticeComponent"
 
   # Constructor.
   #

@@ -1,0 +1,8 @@
+.notice {
+  max-width: 720px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-water);
+  border-radius: var(--radius);
+  margin: 0 auto;
+  font-size: smaller;
+}
