@@ -22,7 +22,7 @@ module Company::Sanitizable
   # @return [String]
   def domainify_website!
     stripped_website = website.strip
-    extracted_website = stripped_website.scan(/[\w|\d\.]+/).last
+    extracted_website = stripped_website.scan(/[\w|\d.]+/).last
     hostified_website = URI(extracted_website).host || extracted_website || stripped_website
     self.website = hostified_website.gsub(/^www\./, "")
   end

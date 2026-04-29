@@ -6,8 +6,17 @@
       heading: t(".hero.heading", company_count: Company.count),
       description: t(".hero.description"),
     )
-  )
+  ) do |component|
 %>
+  <% if @regulation&.dig(:id) == "ccpa" %>
+    <%= component.with_notice do %>
+      <p>
+        California residents can now submit a DROP request via the state government.
+        <a class="link" href="https://privacy.ca.gov/DROP/">Read more about it here</a>.
+      </p>
+    <% end %>
+  <% end %>
+<% end %>
 
 <%= turbo_frame_tag "requester_form" do %>
   <%=
