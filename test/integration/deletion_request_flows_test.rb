@@ -82,6 +82,25 @@ class DeletionRequestFlowsTest < ActionDispatch::IntegrationTest
     assert_enqueued_emails 1
   end
 
+  test "reschedules the first email for later when the provider throttles the synchronous send" do
+    # Simulate the SMTP server throttling the synchronous first send for hitting a send limit.
+    # In the test environment mail is delivered through `Mail::TestMailer`, so raising a 4xx
+    # reply (`Net::SMTPServerBusy`) from it mimics the provider refusing the send. The email
+    # should then be rescheduled via `deliver_later` rather than raising.
+    Mocktail.replace Mail::TestMailer
+    Mocktail.stubs { |m| Mail::TestMailer.new(m.any) }.with { raise Net::SMTPServerBusy.new("throttled") }
+    bulk_deletion_request = BulkDeletionRequest.new \
+      email_subject: "Test deletion request subject",
+      email_body: "Test deletion request body",
+      smtp_provider: "gmail",
+      smtp_username: "test_username",
+      smtp_password: "test_password"
+
+    assert_enqueued_emails 1 do
+      assert_nothing_raised { bulk_deletion_request.deliver_emails }
+    end
+  end
+
   test "sets alert flash for invalid requests" do
     post \
       bulk_deletion_requests_path,
