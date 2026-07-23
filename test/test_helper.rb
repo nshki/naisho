@@ -1,6 +1,7 @@
 require "simplecov"
 SimpleCov.start "rails" do
-  add_filter "app/channels"
+  skip "app/channels"
+  merge_timeout 3600
 end
 
 ENV["RAILS_ENV"] ||= "test"

@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_06_06_193101) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_23_054010) do
   create_table "companies", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "website", null: false
     t.string "category", null: false
     t.datetime "created_at", null: false
+    t.string "email", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.string "website", null: false
     t.index ["category"], name: "index_companies_on_category"
     t.index ["website"], name: "index_companies_on_website", unique: true
   end
